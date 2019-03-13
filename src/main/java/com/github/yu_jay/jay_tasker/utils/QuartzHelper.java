@@ -149,9 +149,9 @@ public class QuartzHelper {
 		JobDetail jobDetail = JobBuilder.newJob(classType)
 				.withIdentity(jobName, jobGroup)
 				.build();
-		scheduler.scheduleJob(jobDetail, trigger);
 		//设置参数
 		jobDetail.getJobDataMap().put("data", data);
+		scheduler.scheduleJob(jobDetail, trigger);
 	    //启动
         if(!scheduler.isShutdown()) {
         	scheduler.start();

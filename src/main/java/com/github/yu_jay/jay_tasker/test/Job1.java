@@ -1,6 +1,7 @@
 package com.github.yu_jay.jay_tasker.test;
 
 import org.quartz.Job;
+import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.Scheduler;
@@ -17,7 +18,14 @@ public class Job1 implements Job {
 		
 		System.out.println("我正在执行第" + index + "...");
 		
+		if(index == 1) {
+			JobTest jobTesta = (JobTest) context.getJobDetail().getJobDataMap().get("data");
+			System.out.println(jobTesta);
+		}
+		
+		
 		if(index > 10) {
+			JobDataMap data = context.getJobDetail().getJobDataMap();
 			JobTest jobTest = (JobTest) context.getJobDetail().getJobDataMap().get("data");
 			System.out.println(jobTest.getScheduler());
 			try {
